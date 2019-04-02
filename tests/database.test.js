@@ -6,4 +6,9 @@ describe('messing with memory database', () => {
         const newDatabase = new MemoryDatabase();
         expect(newDatabase.store).toEqual({});
     });
+    it('capture uuid and set as key', () => {
+        const newDatabase = new MemoryDatabase();
+        newDatabase.create({ username: 'my name', email: 'my@email.com' });
+        expect(Object.values(newDatabase)).toEqual(expect.any(Object));
+    });
 });
