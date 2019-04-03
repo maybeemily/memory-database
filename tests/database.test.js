@@ -28,5 +28,12 @@ describe('messing with memory database', () => {
         expect(newDatabase.find()).toContain(user2);
         expect(newDatabase.find()).toContain(user3);
     });
+    it('findByIdAndUpdate', () => {
+        const newDatabase = new MemoryDatabase();
+        const user = newDatabase.create({ username: 'my name', email: 'my@email.com' });
+        const updatedUser = newDatabase.findByIdAndUpdate(user._id, { username: 'spongebob', email: 'spongebob@email.com' });
+        expect(updatedUser.username).toEqual('spongebob');
+        console.log(newDatabase.store);
+    });
 
 });
