@@ -50,5 +50,10 @@ describe('messing with memory database', () => {
         const deletedUser = newDatabase.findByIdAndDelete(123456);
         expect(deletedUser).toEqual(null);
     });
+    it('deletes all properties/replaces this.store with empty object', () => {
+        const newDatabase = new MemoryDatabase();
+        const emptyStore = newDatabase.drop();
+        expect(emptyStore).toEqual({});
+    });
 
 });
