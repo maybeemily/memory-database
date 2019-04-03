@@ -39,5 +39,16 @@ describe('messing with memory database', () => {
         const updatedUser = newDatabase.findByIdAndUpdate(123456, { username: 'spongebob', email: 'spongebob@email.com' });
         expect(updatedUser).toEqual(null);
     });
+    it('findByIdAndDelete', () => {
+        const newDatabase = new MemoryDatabase();
+        const user = newDatabase.create({ username: 'my name', email: 'my@email.com' });
+        const deletedUser = newDatabase.findByIdAndDelete(user._id);
+        expect(deletedUser).toEqual(user);
+    });
+    it('findByIdAndDelete returns null if ID doesnt exist', () => {
+        const newDatabase = new MemoryDatabase();
+        const deletedUser = newDatabase.findByIdAndDelete(123456);
+        expect(deletedUser).toEqual(null);
+    });
 
 });
