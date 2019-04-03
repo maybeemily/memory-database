@@ -15,9 +15,15 @@ describe('messing with memory database', () => {
     it('findById function returns id', () => {
         const newDatabase = new MemoryDatabase();
         const user = newDatabase.create({ username: 'my name', email: 'my@email.com' });
-        console.log(newDatabase.findById(user._id));
         expect(newDatabase.findById(user._id)).toEqual(expect.any(Object));
         expect((newDatabase.findById(user._id))._id).toEqual(user._id);
+    });
+    it('returns objects in the store', () => {
+        const newDatabase = new MemoryDatabase();
+        const user = newDatabase.create({ username: 'my name', email: 'my@email.com' });
+        const user2 = newDatabase.create({ username: 'my name', email: 'my@email.com' });
+        const user3 = newDatabase.create({ username: 'my name', email: 'my@email.com' });
+        expect(newDatabase.find()).toEqual(expect.any(Array));
     });
 
 });
