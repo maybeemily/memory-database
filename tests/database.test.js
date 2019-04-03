@@ -33,7 +33,11 @@ describe('messing with memory database', () => {
         const user = newDatabase.create({ username: 'my name', email: 'my@email.com' });
         const updatedUser = newDatabase.findByIdAndUpdate(user._id, { username: 'spongebob', email: 'spongebob@email.com' });
         expect(updatedUser.username).toEqual('spongebob');
-        console.log(newDatabase.store);
+    });
+    it('findByIdAndUpdate returns null if ID doesnt exist', () => {
+        const newDatabase = new MemoryDatabase();
+        const updatedUser = newDatabase.findByIdAndUpdate(123456, { username: 'spongebob', email: 'spongebob@email.com' });
+        expect(updatedUser).toEqual(null);
     });
 
 });
