@@ -24,6 +24,9 @@ describe('messing with memory database', () => {
         const user2 = newDatabase.create({ username: 'my name', email: 'my@email.com' });
         const user3 = newDatabase.create({ username: 'my name', email: 'my@email.com' });
         expect(newDatabase.find()).toEqual(expect.any(Array));
+        expect(newDatabase.find()).toContain(user);
+        expect(newDatabase.find()).toContain(user2);
+        expect(newDatabase.find()).toContain(user3);
     });
 
 });
